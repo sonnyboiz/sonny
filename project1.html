@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mood Mixer - Aung Pyae Sone</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="project1.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="header-content">
+          <i class="fas fa-headphones header-icon"></i>
+          <div>
+            <h1>Mood Mixer</h1>
+            <p>Curate your perfect playlist</p>
+          </div>
+        </div>
+
+        <!-- Student Info - Professional Touch -->
+        <div class="student-info">
+          <div class="name">Aung Pyae Sone</div>
+          <div class="id">ID: 240702403214</div>
+        </div>
+
+        <div id="moodOfDay" class="mood-badge" style="display: none"></div>
+
+        <div class="header-buttons">
+          <button id="logMoodBtn" class="secondary-btn">
+            📝 Log Today's Mood
+          </button>
+          <button id="viewRecapBtn" class="secondary-btn">
+            📊 Weekly Recap
+          </button>
+          <button id="viewHistoryBtn" class="secondary-btn">
+            ⏳ Mood History
+          </button>
+        </div>
+      </header>
+
+      <div class="mood-selector" id="moodSelector">
+        <div class="section-title">
+          <h2>Select Your Mood</h2>
+        </div>
+
+        <div class="mood-grid">
+          <label class="mood-card" data-mood="stressed">
+            <input type="radio" name="mood" value="stressed" />
+            <div class="mood-icon">
+              <i class="fas fa-cloud-rain"></i>
+            </div>
+            <span>Stressed</span>
+          </label>
+
+          <label class="mood-card" data-mood="hyped">
+            <input type="radio" name="mood" value="hyped" />
+            <div class="mood-icon">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <span>Hyped</span>
+          </label>
+
+          <label class="mood-card" data-mood="chill">
+            <input type="radio" name="mood" value="chill" />
+            <div class="mood-icon">
+              <i class="fas fa-spa"></i>
+            </div>
+            <span>Chill</span>
+          </label>
+
+          <label class="mood-card" data-mood="sad">
+            <input type="radio" name="mood" value="sad" />
+            <div class="mood-icon">
+              <i class="fas fa-heart-broken"></i>
+            </div>
+            <span>Sad</span>
+          </label>
+
+          <label class="mood-card" data-mood="excited">
+            <input type="radio" name="mood" value="excited" />
+            <div class="mood-icon">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <span>Excited</span>
+          </label>
+
+          <label class="mood-card" data-mood="focused">
+            <input type="radio" name="mood" value="focused" />
+            <div class="mood-icon">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <span>Focused</span>
+          </label>
+        </div>
+
+        <div class="intensity-section">
+          <h3>Intensity Level</h3>
+          <div class="slider-container">
+            <div class="slider-track">
+              <div class="slider-fill" id="sliderFill"></div>
+            </div>
+            <input type="range" id="intensity" min="0" max="100" value="50" />
+            <div class="intensity-labels">
+              <span>Low</span>
+              <span id="intensityValue">50</span>
+              <span>High</span>
+            </div>
+          </div>
+        </div>
+
+        <button id="mixBtn" class="primary-btn">
+          <i class="fas fa-magic"></i>
+          Generate Mix
+        </button>
+      </div>
+
+      <div class="mix-result" id="mixResult" style="display: none">
+        <div class="result-header">
+          <h2>Your Custom Mix</h2>
+          <div class="mix-badge" id="mixTitle"></div>
+        </div>
+
+        <div class="playlist-section">
+          <h3>Recommended Tracks</h3>
+          <div class="playlist" id="playlist"></div>
+        </div>
+
+        <div class="player-controls" id="playerControls" style="display: none">
+          <h3>Now Playing</h3>
+          <div class="waveform" id="waveform"></div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <div class="player-buttons">
+            <button id="prevBtn" class="control-btn">
+              <i class="fas fa-backward"></i> Prev
+            </button>
+            <button id="playPauseBtn" class="control-btn play-btn">
+              <i class="fas fa-play"></i> Play
+            </button>
+            <button id="nextBtn" class="control-btn">
+              <i class="fas fa-forward"></i> Next
+            </button>
+          </div>
+        </div>
+
+        <div class="controls-section">
+          <div class="sound-controls">
+            <button id="shuffleBtn" class="control-btn shuffle-btn">
+              <i class="fas fa-random"></i> Shuffle Play
+            </button>
+            <button id="playSound" class="control-btn play-btn">
+              <i class="fas fa-play"></i>
+              Play Preview
+            </button>
+            <button id="saveMix" class="control-btn save-btn">
+              <i class="fas fa-save"></i>
+              Save Mix
+            </button>
+          </div>
+          <button id="newMix" class="secondary-btn">
+            <i class="fas fa-redo"></i>
+            New Mix
+          </button>
+        </div>
+
+        <div
+          id="motivationSection"
+          class="motivation-section"
+          style="display: none"
+        >
+          <h3>Cosmic Dopamine Boosters 🌟</h3>
+          <ul>
+            <li>Eat tyrosine-rich foods like bananas, chocolate, or almonds</li>
+            <li>Get moving with exercise or a quick walk</li>
+            <li>Listen to your favorite uplifting music</li>
+            <li>Spend time in sunlight or nature</li>
+            <li>Practice gratitude or meditation</li>
+            <li>Get enough sleep to recharge</li>
+          </ul>
+          <p>
+            Remember, even in the cosmic void, new stars are born every day.
+            You've got this! 💫
+          </p>
+        </div>
+      </div>
+
+      <!-- History Timeline Modal -->
+      <div id="historyModal" class="modal" style="display: none">
+        <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <h2>Cosmic Mood History</h2>
+          <div class="timeline" id="timeline"></div>
+        </div>
+      </div>
+
+      <!-- Weekly Recap Modal -->
+      <div id="recapModal" class="modal" style="display: none">
+        <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <h2>Weekly Cosmic Recap</h2>
+          <canvas id="recapChart" width="400" height="200"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <script src="project1.js"></script>
+  </body>
+</html>
